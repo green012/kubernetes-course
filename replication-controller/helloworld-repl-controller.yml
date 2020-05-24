@@ -17,3 +17,27 @@ spec:
         ports:
         - name: nodejs-port
           containerPort: 3000
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+        - name: nodejs-container
+          image: green012/node3
+          ports:
+            - containerPort: 3000
+              name: nodejs-port
+
