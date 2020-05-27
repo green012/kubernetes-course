@@ -13,6 +13,6 @@
  
  show tables;
  
- select * from <table>
+ select * from <table> ;
  
  ```
