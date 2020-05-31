@@ -17,6 +17,38 @@ you can have volumes outside of cluster, using the plugins.
 
 ### Usage of volumes
 ```
-creates the volumes and attach it to the pod
+ You must create an EBS volume using aws ec2 create-volume or the AWS API before you can use it
+```
+
+### For AWS EBS
+
+```
+
+There are some restrictions when using an awsElasticBlockStore volume:
+
+the nodes on which Pods are running must be AWS EC2 instances
+those instances need to be in the same region and availability-zone as the EBS volume
+EBS only supports a single EC2 instance mounting a volume
+
+```
+
+### Use kubectl drain command
+
+```
+The node will delete everthing it has on it and will not be ready for any another scheduling
+
+kubectl get nodes
+kubectl drain <node name>
+
+Once your work is done, you can make your node available for scheduling
+
+kubectl uncordon <node name>
+```
+
+### Use case for kubectl drain
+
+```
+- do maintenance on node
+- testing purposes
 
 ```
